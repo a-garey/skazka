@@ -45,7 +45,7 @@ I will need to store questions and answers for activities in each chapter.
     2. question_image = ImageField(null=True, blank=True)
     3. chapter = ForeignKey
     1. answer = CharField
-    1. choices = OnetoMany(Answer, verbose_name="Answer")
+    1. choices = ManytoOne(Answer, verbose_name="Answer")
     4. created = DateTimeField(auto_now=True)
     5. updated = DateTimeField(auto_now=True)
 
@@ -53,6 +53,18 @@ I will need to store questions and answers for activities in each chapter.
     1. answer_text = TextField
     2. question_id = ForeignKey
     3. correct = Boolean
+    4. created = DateTimeField(auto_now=True)
+    5. updated = DateTimeField(auto_now=True)
+
+* User 
+    1. ?
+
+* Vocab
+    1. word_text = CharField
+    1. chapter = CharField
+    1. definition = CharField
+    4. created = DateTimeField(auto_now=True)
+    5. updated = DateTimeField(auto_now=True)
 
 <h2>Schedule</h2>
 

@@ -2,7 +2,5 @@ from django.shortcuts import render, HttpResponse
 
 
 def index(request):
-    return HttpResponse("Home page")
+    return render(request, "skazka_app/index.html")
 
-def loginPage(request):
-    context = {}

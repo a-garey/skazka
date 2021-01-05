@@ -2,3 +2,40 @@ body {
     background-color: bisque;
     padding: 30px; 
 }
+
+/* .form {
+
+} */
+
+/* input {
+    width: 40%;
+} */
+
+input[type=password]{
+    width: 40%
+}
+
+input[type=text]{
+    width: 40%
+}
+
+input[type=email]{
+    width: 40%
+}
+
+label {
+    color: #B4886B;
+    font-weight: bold;
+    display: block;
+    width: 150px;
+    float: left;
+    }
+    label:after { content: " " }
+
+input, textarea, select {
+    width : 150px;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+

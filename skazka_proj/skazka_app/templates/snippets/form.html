@@ -1,8 +1,12 @@
 {% load static %}
 
-<form method='POST' action="." enctype="multipart/form-data">{% csrf_token %}
-    
-    {{ form.as_p  }}
 
-    <button type='submit' class='{{ btn_class }}'>{% if submit_btn %} {{ submit_btn }} {% else %}Submit {% endif %}</button>
-</form>
+<div class="regform">
+
+    <form method='POST' action="." enctype="multipart/form-data">{% csrf_token %}
+        {{ form.as_p  }}
+
+        <button type='submit' class='{{ btn_class }}'>{% if submit_btn %} {{ submit_btn }} {% else %}Submit {% endif %}</button>
+    </form>
+
+</div>

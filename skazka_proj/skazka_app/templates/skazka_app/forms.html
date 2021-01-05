@@ -1,0 +1,10 @@
+{% extends 'skazka_app/base.html' %}
+
+
+{% block content %}
+
+{% include 'snippets/form.html' with form=form %}
+
+<a href="{% url 'register' %}">Register</a>
+
+{% endblock %}

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
-</head>
-<body>
-    <main>
+
+    {% include 'skazka_app/head.html' %}
+
+    <body>
+
+        {% include 'skazka_app/header.html' %}
+
         {% block content %}
-        {% endblock %}
-    </main>
-</body>
+        {% endblock content %}
+
+        {% comment %} {% include 'skazka_app/footer.html' %} {% endcomment %}
+
+        {% include 'skazka_app/scripts.html'%}
+    </body>
 </html>

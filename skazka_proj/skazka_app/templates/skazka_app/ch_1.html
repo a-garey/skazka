@@ -1,0 +1,84 @@
+{% extends 'skazka_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class='main-content'>
+
+    <div class='intro'>
+        <h1><SPAN STYLE="font-family: 'Gochi Hand', cursive; font-size: 36pt">Chapter 1: The cyrillic alphabet</span><h1>
+        <h3>Chances are, you already know 70% of the Russian alphabet!</h3>
+    </div>
+
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-image-mine">
+                            <img src="/static/images/delta-gamma-phi.jpg" width="70" height="210" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Delta Gamma Phi, Sorority</h5>
+                            <p class="card-text"> Д = D ⬩ Г = G ⬩ Ф = F</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-image-mine">
+                            <img src="/static/images/tri-delt.jpg" width="60" height="200" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Delta Delta Delta, Sorority</h5>
+                            <p class="card-text">Д = D</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <div class="card-image-mine">
+                            <img src="/static/images/pi.png" width="60" height="200" class="card-img-top" alt="...">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Pi</h5>
+                            <p class="card-text">П = P</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="presentation">
+        <div class="container-opacity">
+            <h1 class="display-8">Listen and learn</h1>
+            <p class="lead">Watch the Cyrillic alphabet video, then complete the exercises below.</p>
+
+            <div class="video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/ApzqVSob77M?start=9" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class=vocab>
+
+        <h2>Vocabulary</h2>
+        <div class="exercise">
+            <h5>Excercise 1.1</h5>
+            <p>As you watch the video, place these six cards in the correct order</p>
+            <h4>GAME HERE</h4>
+        </div>
+        <div class="exercise">
+            <h5>Excercise 1.2</h5>
+            <p>Match the Cyrillic words to their English equivalents. Review the video as necessary.</p>
+            <h4>GAME HERE</h4>
+        </div>
+        
+    </div>
+
+</div>
+
+
+{% endblock %}

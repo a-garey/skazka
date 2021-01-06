@@ -128,5 +128,22 @@ a:hover {
     padding-top: 24px;
     display: flex;
     justify-content: center;
+}
 
+.card-image-mine {
+    width: 70%;
+    padding: 18px;
+    margin: auto;
+}
+
+.card-text {
+    text-align: center;
+}
+
+.card-title {
+    text-align: center;
+}
+
+.presentation, .exercise {
+    margin-bottom: 18px;
 }

@@ -14,4 +14,7 @@ def dashboard(request):
         "all_scores" : Result.objects.exclude(student = request.session["user_id"])
     }
 
+def ch_1(request):
+    return render(request, "skazka_app/ch_1.html")
+
 

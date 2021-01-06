@@ -1,5 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Skazka</a>
+
+  <a class="navbar-brand" href="/">
+      <img src="/static/images/squirrel_icon.png" width="60" height="60" class="d-inline-block align-center" alt="">
+      <SPAN STYLE="font-family: 'Gochi Hand', cursive; font-size: 28pt">Skazka</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,7 +10,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Dashboard</a>
@@ -17,19 +20,35 @@
           Chapters
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Chapter 1</a>
+          <a class="dropdown-item" href="#">Chapter 2</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <a class="dropdown-item" href="#">TOC</a>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Games</a>
       </li>
     </ul>
+
+    <nav class="navbar navbar-light bg-light">
+      {% if user.is_authenticated %}
+        <span class="navbar-text">
+          Hi {{ user.username }}!  &nbsp;&nbsp;
+          <a href="{% url 'logout' %}">Log Out</a>
+        </span>
+        {% else %}
+          <span class="navbar-text">
+            You are not logged in &nbsp;&nbsp;
+            <a href="{% url 'login' %}">Log In</a> |
+            <a href="{% url 'register' %}">Register</a>
+          </span>
+          {% endif %}
+    </nav>
+
     <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      <input class="form-control mr-sm-2" type="search" placeholder="Keyword" aria-label="Search">
+      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>

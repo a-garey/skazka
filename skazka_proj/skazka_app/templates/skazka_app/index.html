@@ -4,15 +4,30 @@
 
 {% block content %}
 
-    <h1>Index Page</h1> 
+<div class='main-content'>
 
-    {% if user.is_authenticated %}
-        Hi {{ user.username }}!
-        <p><a href="{% url 'logout' %}">Log Out</a></p>
-    {% else %}
-        <p>You are not logged in</p>
-        <a href="{% url 'login' %}">Log In</a> |
-        <a href="{% url 'register' %}">Register</a>
-    {% endif %}
+    <div class='intro'>
+        <h1>Здравствуйте!<h1>
+        <h2>Skazka is a free, interactive, media-based Russian textbook. </h2>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container-opacity">
+            <h1 class="display-7">Get started</h1>
+            <p class="lead">Watch this clip from "The Snow Queen," then match the vocabulary words below</p>
+        </div>
+
+        <div class="video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/uK-YTOlM59w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <div class=vocab>
+
+        <h2>Vocab goes here</h2>
+
+    </div>
+
+</div>
 
 {% endblock %}

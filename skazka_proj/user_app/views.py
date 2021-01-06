@@ -32,10 +32,10 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         if user != None:
             login(request, user)
-            user_list = User.objects.filter(email = email)
-            logged_user = user_list[0]
-            request.session["user_id"] = logged_user.id
-            print(logged_user.id)
+            # user_list = User.objects.filter(email = email)
+            # logged_user = user_list[0]
+            # request.session["user_id"] = logged_user.id
+            # print(logged_user.id)
             return redirect("/")
         else:
             request.session['invalid_user'] = 1    

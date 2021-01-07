@@ -28,16 +28,14 @@
         </div>
     </div>
 
-
     <div class="vocab-box">
-
         <div class="info">
             <h2>Vocabulary</h2>
+            <h5 class="instructions">Drag the English word to its Russian equivalent</h5>
             <p>Score: <text id="score001">0</text></p>
         </div>
 
         <div class="board">
-
             <div class="box002" ondrop="drop001(event)">
                 <text ondragstart="dragStart001(event)" draggable="true" id="target001">hello</text>
             </div>
@@ -58,27 +56,35 @@
                 <text ondragstart="dragStart005(event)" draggable="true" id="target005">Anderson</text>
             </div> <div class="break"></div> 
 
-            <div class="box001" ondrop="drop006(event)" ondragover="allowDrop001(event)" id="place001">здравствуйте</div> 
+            <div class="box001" ondrop="drop006(event)" ondragover="allowDrop001(event)" id="place001">здравствуйте &nbsp;<i class="far fa-hand-paper"></i></div> 
 
-            <div class="box001" ondrop="drop007(event)" ondragover="allowDrop002(event)" id="place002">зонтик</div> 
+            <div class="box001" ondrop="drop009(event)" ondragover="allowDrop004(event)" id="place004">погодите &nbsp; <i class="fas fa-stopwatch"></i></div> 
 
-            <div class="box001" ondrop="drop008(event)" ondragover="allowDrop003(event)" id="place003">первый</div> 
+            <div class="box001" ondrop="drop007(event)" ondragover="allowDrop002(event)" id="place002">зонтик &nbsp;<i class="fas fa-umbrella"></i></div> 
 
-            <div class="box001" ondrop="drop009(event)" ondragover="allowDrop004(event)" id="place004">погодите</div> 
+            <div class="box001" ondrop="drop010(event)" ondragover="allowDrop005(event)" id="place005">Андерсон &nbsp; <i class="fas fa-user-tie"></i></div> 
 
-            <div class="box001" ondrop="drop010(event)" ondragover="allowDrop005(event)" id="place005">Андерсон</div> 
+            <div class="box001" ondrop="drop008(event)" ondragover="allowDrop003(event)" id="place003">первый &nbsp; 𝟣<sup>st</sup></div> 
         </div>
+
         <div id="result">
             <h4></h4>
         </div>
 
     </div>
+
+    <a href="ch_1"><h4 class="go">Go to Chapter 1 &nbsp;<i class="fas fa-arrow-right fa-lg"></i></a></h4>
 </div>
 
 <script>
     var x = 0;
-    x++
+    x++;
 
+    function gameOver(x) {
+        if (x > 5) {
+            result.innerText = "All correct!"
+        }
+    }
 
     function dragStart001(event) {
         event.dataTransfer.setData("choice001", event.target.id);
@@ -123,39 +129,48 @@
     function drop006(event) {
         let data = event.dataTransfer.getData("choice001");
         event.target.appendChild(document.getElementById(data));
-    score001.innerHTML = x++;
+        score001.innerHTML = x++;
+        x = x++;
         place001.innerHTML = "hello";
+        gameOver(x);
     }
 
     function drop007(event) {
         let data = event.dataTransfer.getData("choice002");
         event.target.appendChild(document.getElementById(data));
-    score001.innerHTML = x++;
+        score001.innerHTML = x++;
+        x = x++;
         place002.innerHTML = "umbrella";
+        gameOver(x);
     }
 
     function drop008(event) {
         let data = event.dataTransfer.getData("choice003");
         event.target.appendChild(document.getElementById(data));
-    score001.innerHTML = x++;
+        score001.innerHTML = x++;
+        x = x++;
         place003.innerHTML = "first";
+        gameOver(x);
     }
 
     function drop009(event) {
         let data = event.dataTransfer.getData("choice004");
         event.target.appendChild(document.getElementById(data));
-    score001.innerHTML = x++;
+        score001.innerHTML = x++;
+        x = x++;
         place004.innerHTML = "wait";
+        gameOver(x);
     }
 
     function drop010(event) {
         let data = event.dataTransfer.getData("choice005");
         event.target.appendChild(document.getElementById(data));
-    score001.innerHTML = x++;
+        score001.innerHTML = x++;
+        x = x++;
         place005.innerHTML = "Anderson";
+        gameOver(x);
+        console.log(x, "X EQUALS")
     }
-
-
     
 </script>
 

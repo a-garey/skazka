@@ -17,7 +17,7 @@
 }
 
 .box001 {
-    width: 150px;
+    width: 180px;
     height: 30px;
     margin: 16px;
     padding: 16px;
@@ -32,6 +32,17 @@
     margin: 16px;
     padding: 16px;
     padding-bottom: 32px;
-    /* border: 1px dashed white; */
     text-align: center;
+}
+
+#result {
+    text-align: center;
+    font-family: 'Gochi Hand', cursive;
+    font-size: x-large;
+    color: #b900bc;
+}
+
+.instructions {
+    font-style: italic;
+    margin-top: 12px;
 }

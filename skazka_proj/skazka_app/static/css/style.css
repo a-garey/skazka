@@ -147,3 +147,19 @@ a:hover {
 .presentation, .exercise {
     margin-bottom: 18px;
 }
+
+.go {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 24px;
+    color: #b900bc
+}
+
+.go a {
+    color: #b900bc;
+}
+
+.go a:hover {
+    color: #b86bba;
+    text-decoration: none;
+}

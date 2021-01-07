@@ -1,0 +1,37 @@
+.vocab-box {
+    padding: 18px;
+    border: 2px solid white;
+    border-style: outset;
+}
+
+.board {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
+.box001 {
+    width: 150px;
+    height: 30px;
+    margin: 16px;
+    padding: 16px;
+    padding-bottom: 32px;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.box002 {
+    width: 150px;
+    height: 30px;
+    margin: 16px;
+    padding: 16px;
+    padding-bottom: 32px;
+    /* border: 1px dashed white; */
+    text-align: center;
+}

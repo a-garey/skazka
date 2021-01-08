@@ -14,6 +14,7 @@ def register_page(request):
         try: 
             user = User.objects.create_user(username, email, password)
             request.session["user_id"] = user.id
+            print("user_id")
         except: 
             user = None
             

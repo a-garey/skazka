@@ -78,3 +78,42 @@
     grid-row-gap: 30px;
     justify-content: center;
 }
+
+.myInput {
+    font-size: 24px;
+    border: 1px solid black;
+    margin-top: 12px;
+    letter-spacing: 0.5em;
+    text-align: center;
+}
+
+.gameArea {
+    margin: auto;
+    text-align: center;
+}
+
+.showScore {
+    background-color: white;
+    padding: 12px;
+    width: 40%;
+    margin-bottom: 12px;
+}
+
+.gameButton {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #727882;
+    border-color: inherit;
+}
+
+.gameButton:hover {
+    background-color: #5a6268;
+}
+
+.resultText {
+    text-align: center;
+    font-family: 'Gochi Hand', cursive;
+    font-size: x-large;
+    color: #b900bc;
+}

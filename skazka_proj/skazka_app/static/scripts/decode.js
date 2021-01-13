@@ -1,131 +1,95 @@
 //Decode game -- match Cyrillic to Latin letters
 
 const decodeArea = document.querySelector('.decodeArea');
-const userInput = document.createElement('textarea');
+// const userInput = document.createElement('textarea');
 const decOutput = document.createElement('div');
 const decBtn = document.createElement('button');
 const output1 = document.createElement('div');
-const newVal = [];
+const timeCounter = document.createElement('div');
+const minutesCounter = document.createElement('span');
+const secondsCounter = document.createElement('span');
+const decGame = {totalSeconds: 0, inter: {}};
+const decWords = ['тв', 'бургер', 'суп', 'такси', 'балерина', 'радио', 'водка', 'баскетбол', 'студент', 'парк',
+'водка', 'лифт', 'интернет', 'телефон', 'журналист']
 
-let arr1 = [{id: '1', name: 'a'}, {id: '2', name: 'b'}, {id: '3', name: 'c'},
-{id: '4', name: 'd'}, {id: '5', name: 'e'}, {id: '6', name: 'f'}, {id: '7', name: 'g'},
-{id: '8', name: 'h'}, {id: '9', name: 'i'}, {id: '10', name: 'j'}, {id: '11', name: 'k'},
-{id: '12', name: 'l'}, {id: '13', name: 'm'}, {id: '14', name: 'n'}, {id: '15', name: 'o'},
-{id: '16', name: 'p'}, {id: '17', name: 'q'}, {id: '18', name: 'r'}, {id: '19', name: 's'}, 
-{id: '20', name: 't'}, {id: '21', name: 'u'}, {id: '22', name: 'v'}, {id: '23', name: 'w'},
-{id: '24', name: 'x'}, {id: '25', name: 'y'}, {id: '26', name: 'z'} ]
-
-let arr2 = [{id: '1', name: 'а'}, {id: '2', name: 'б'}, 
-{id: '4', name: 'д'}, {id: '5', name: 'е'}, {id: '6', name: 'ф'}, {id: '7', name: 'г'},
-{id: '8', name: 'х'}, {id: '9', name: 'и'}, {id: '11', name: 'к'},
-{id: '12', name: 'л'}, {id: '13', name: 'м'}, {id: '14', name: 'н'}, {id: '15', name: 'о'},
-{id: '16', name: 'п'}, {id: '18', name: 'р'}, {id: '19', name: 'с'}, 
-{id: '20', name: 'т'}, {id: '21', name: 'у'}, {id: '22', name: 'в'}, {id: '26', name: 'з'} ]
+let arr1 = {a: 'а', b: 'б', d: 'д', e: 'е', f: 'ф', g: 'г', h: 'х', i: 'и', k: 'к', l: 'л', m: 'м', n: 'н', o: 'о',
+p: 'п', r: 'р', s: 'с', t: 'т', u: 'у', v: 'в', z: 'з'}
 
 //button and style
-decBtn.textContent = 'Create Secret Code';
+decBtn.textContent = 'Start';
 decBtn.style.display = 'block';
-userInput.style.width = '600px';
-userInput.style.height = '50px'; 
-userInput.value = "Hello world"
-output1.style.fontSize = '0.6em';
+decBtn.classList.add("gameButton")
+// userInput.style.width = '600px';
+// userInput.style.height = '50px'; 
+// userInput.value = "Hello world"
+output1.style.fontSize = '0.8em';
 output1.style.backgroundColor = '#ddd';
 output1.style.padding = '10px';
 output1.style.marginTop = '12px';
+timeCounter.style.display = 'none';
 
 
 //add to HTML
+timeCounter.append(minutesCounter);
+timeCounter.append(document.createTextNode(':'));
+timeCounter.append(secondsCounter);
+
+decodeArea.append(timeCounter);  
 decodeArea.append(decOutput);
-decodeArea.append(userInput);
+// decodeArea.append(userInput);
 decodeArea.append(decBtn);
 decodeArea.append(output1);
 window.addEventListener('DOMContentLoaded', init());
 
+
 //Event listeners
 decBtn.addEventListener('click', (e) => {
-    let resp = makeOutput(userInput.value);
+    decWords.sort();
+    let gameWord = decWords[0];
+    let resp = makeOutput(gameWord);
+     // let resp = makeOutput(userInput.value);
     decOutput.textContent = resp;
     console.log(resp);
-
-
+    decBtn.style.display = 'none';
+    decGame.inter = setInterval(setTimer, 1000);
+    timeCounter.style.display = 'inline';
+    return gameWord;
 })
 
-//Methods
-// function makeOutput(val) {
-//     let holder = [];
-//     for(let i = 0; i < val.length; i++) {
-//         let charVal = val.charAt(i);
-//         let coded =  charVal.toLowerCase().charCodeAt(0) - 96;
-//         // console.log(coded);
-//         holder.push(coded);
-//     }
-//     let cyrTemp = holder.join('-');
-//     let temp1 = cyrTemp.replace(/--64-/g, ' ');
-//     console.log(temp1);
-//     return temp1;
-// }
-
-// function makeOutput(arr1, arr2) {
-//     // let cyrTemp = val.split('');
-    // let temp1 = cyrTemp.map((ltr) =>{
-    //     return ltr.toLowerCase().charCodeAt(0) - 96;
-    // });
-    // console.log(temp1, "TEMP 1");
-    // let temp2 = temp1.join('-');
-    // let temp3 = temp2.replace(/--64/g, ' ');
-    // console.log(temp3, "TEMP 3");
-    // return temp3;
-//     const decoded = arr1.map((obj) => {
-//         return arr2.find(o => o.id === obj.id) || obj
-//         });
-//     const decoded = arr1.map()
-//     console.log(decoded, "TRANSLATED")
-//     return decoded
-// }
-
-function makeOutput(val) {
-    let tempArr = []
-    if (Object.keys(arr1) === (Object.keys(arr2))) {
-        const newVal = Object.value(arr2)
-        console.log(newVal)
+function makeOutput(gameWord) {
+    let word = gameWord;
+    for (i=0; i < word.length; i++) {
+        rusVal = word[i];
+        engVal = arr1[engVal];
+        console.log(rusVal, "RUS")
     }
-    return newVal;
 }
 
 function init() {
     let valHtml = '';
-    for(let i = 0; i < ; i++){
-        let val = String.fromCharCode(i);
-        // console.log(i, val);
-        valHtml += `${i - 96} = ${val}  `;
+    for (const conv in arr1){
+        let objKey = conv
+        let objVal = arr1[conv]
+        console.log(`${objKey} = ${objVal}  `);
+        valHtml += `${objKey} = ${objVal}&nbsp;&nbsp;  `;
     }
     output1.innerHTML = valHtml;  
-    // console.log(output1, "THIS IS THE OUTPUT");
 }
 
-//for each i, perhaps add another look-up for the Cyrillic
+function setTimer() {
+    decGame.totalSeconds++;
+    secondsCounter.innerHTML = padNum(decGame.totalSeconds % 60);
+    minutesCounter.innerHTML = padNum(Math.floor(decGame.totalSeconds / 60));
+}
 
-// a a 
-// b б
-// d д
-// e e 
-// f ф
-// g г
-// h х
-// i и
-// k k
-// l л
-// m м
-// n н
-// o о
-// p п
-// r р
-// s с
-// t т
-// u у
-// v в
-// z з
+function padNum(val){
+    let valString = val + "";
+    if(valString.length < 2) {
+        return "0" + valString
+    } else {
+        return valString;
+    }
+}
 
-// tv, burger, kofe, soup, vodka, lift, park, taksi, balerina, zhurnalist, radio, basketbol, internet, student, telefon
 
-//given the cyrillic, type the English
+//given the cyrillic letters, type the English equivalent to decode the word

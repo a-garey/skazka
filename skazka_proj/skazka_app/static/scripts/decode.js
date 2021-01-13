@@ -11,8 +11,12 @@ const secondsCounter = document.createElement('span');
 const decGame = {totalSeconds: 0, inter: {}};
 const decWords = ['тв', 'бургер', 'суп', 'такси', 'балерина', 'радио', 'водка', 'баскетбол', 'студент', 'парк',
 'водка', 'лифт', 'интернет', 'телефон', 'журналист']
+let gameWord = "";
 
-let arr1 = {a: 'а', b: 'б', d: 'д', e: 'е', f: 'ф', g: 'г', h: 'х', i: 'и', k: 'к', l: 'л', m: 'м', n: 'н', o: 'о',
+let arr1 = {а: 'a', б: 'b', д: 'd', е: 'e', ф: 'f', г: 'g', х: 'h', и: 'i', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o',
+п: 'p', р: 'r', с: 's', т: 't', у: 'u', в: 'v', з: 'z'}
+
+let arr2 = {a: 'а', b: 'б', d: 'д', e: 'е', f: 'ф', g: 'г', h: 'х', i: 'и', k: 'к', l: 'л', m: 'м', n: 'н', o: 'о',
 p: 'п', r: 'р', s: 'с', t: 'т', u: 'у', v: 'в', z: 'з'}
 
 //button and style
@@ -45,23 +49,23 @@ window.addEventListener('DOMContentLoaded', init());
 //Event listeners
 decBtn.addEventListener('click', (e) => {
     decWords.sort();
-    let gameWord = decWords[0];
-    let resp = makeOutput(gameWord);
+    gameWord = decWords[0];
+    let resp = gameWord;
      // let resp = makeOutput(userInput.value);
     decOutput.textContent = resp;
     console.log(resp);
     decBtn.style.display = 'none';
     decGame.inter = setInterval(setTimer, 1000);
     timeCounter.style.display = 'inline';
-    return gameWord;
+    makeOutput(gameWord);
+    console.log(gameWord);
 })
 
-function makeOutput(gameWord) {
-    let word = gameWord;
-    for (i=0; i < word.length; i++) {
-        rusVal = word[i];
-        engVal = arr1[engVal];
-        console.log(rusVal, "RUS")
+function makeOutput(val) {
+    for (i=0; i < val.length; i++) {
+        rusVal = val[i];
+        engVal = arr1[rusVal];
+        console.log(rusVal, engVal, "RUS")
     }
 }
 
@@ -70,7 +74,7 @@ function init() {
     for (const conv in arr1){
         let objKey = conv
         let objVal = arr1[conv]
-        console.log(`${objKey} = ${objVal}  `);
+        // console.log(`${objKey} = ${objVal}  `);
         valHtml += `${objKey} = ${objVal}&nbsp;&nbsp;  `;
     }
     output1.innerHTML = valHtml;  
@@ -90,6 +94,5 @@ function padNum(val){
         return valString;
     }
 }
-
 
 //given the cyrillic letters, type the English equivalent to decode the word

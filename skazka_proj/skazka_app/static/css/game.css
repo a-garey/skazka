@@ -105,6 +105,7 @@
     border-radius: 5px;
     background-color: #727882;
     border-color: inherit;
+    margin: auto;
 }
 
 .gameButton:hover {
@@ -116,4 +117,16 @@
     font-family: 'Gochi Hand', cursive;
     font-size: x-large;
     color: #b900bc;
+}
+
+/* CSS for decoder game */
+
+.decodeArea {
+    text-align: center;
+    margin: auto;
+}
+
+.codeKeys {
+    font-size: 0.8em;
+    background-color:  #5a6268;
 }

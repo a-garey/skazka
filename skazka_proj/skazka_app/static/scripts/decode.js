@@ -5,6 +5,7 @@ const decodeArea = document.querySelector('.decodeArea');
 const decOutput = document.createElement('div');
 const decBtn = document.createElement('button');
 const output1 = document.createElement('div');
+const solutionKey = document.createElement('div')
 const timeCounter = document.createElement('div');
 const minutesCounter = document.createElement('span');
 const secondsCounter = document.createElement('span');
@@ -20,7 +21,7 @@ let arr2 = {a: 'а', b: 'б', d: 'д', e: 'е', f: 'ф', g: 'г', h: 'х', i: '�
 p: 'п', r: 'р', s: 'с', t: 'т', u: 'у', v: 'в', z: 'з'}
 
 //button and style
-decBtn.textContent = 'Start';
+decBtn.textContent = 'Start Game';
 decBtn.style.display = 'block';
 decBtn.classList.add("gameButton")
 // userInput.style.width = '600px';
@@ -30,6 +31,8 @@ output1.style.fontSize = '0.8em';
 output1.style.backgroundColor = '#ddd';
 output1.style.padding = '10px';
 output1.style.marginTop = '12px';
+output1.style.display = 'none';
+output1.classList.add("codeKeys")
 timeCounter.style.display = 'none';
 
 
@@ -48,17 +51,20 @@ window.addEventListener('DOMContentLoaded', init());
 
 //Event listeners
 decBtn.addEventListener('click', (e) => {
-    decWords.sort();
-    gameWord = decWords[0];
-    let resp = gameWord;
+    startGame();
+    decWords.sort(() => {return 0.5 - Math.random()});
      // let resp = makeOutput(userInput.value);
+    let myPhrase = decWords.shift();
+    console.log(decWords);
+    console.log(myPhrase, "WORD");
+    let resp = myPhrase;
+    makeOutput(myPhrase);
     decOutput.textContent = resp;
-    console.log(resp);
+    console.log(resp, "RESP");
+    timeCounter.style.display = 'inline';
+    output1.style.display = 'inline';
     decBtn.style.display = 'none';
     decGame.inter = setInterval(setTimer, 1000);
-    timeCounter.style.display = 'inline';
-    makeOutput(gameWord);
-    console.log(gameWord);
 })
 
 function makeOutput(val) {
@@ -78,6 +84,11 @@ function init() {
         valHtml += `${objKey} = ${objVal}&nbsp;&nbsp;  `;
     }
     output1.innerHTML = valHtml;  
+}
+
+function startGame() {
+    output1.style.display = 'block';
+    timeCounter.style.display - 'block';
 }
 
 function setTimer() {

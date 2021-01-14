@@ -130,3 +130,14 @@
     font-size: 0.8em;
     background-color:  #5a6268;
 }
+
+.clockCounter {
+    font-size: 2.5em;
+    font-family: 'Bungee Outline', cursive;
+}
+
+.inVal {
+    width: 24px;
+    margin-bottom: 12px;
+    text-align: center;
+}

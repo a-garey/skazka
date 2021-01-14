@@ -5,13 +5,15 @@ const decodeArea = document.querySelector('.decodeArea');
 const decOutput = document.createElement('div');
 const decBtn = document.createElement('button');
 const output1 = document.createElement('div');
+const output2 = document.createElement('div');
 const solutionKey = document.createElement('div')
 const timeCounter = document.createElement('div');
 const minutesCounter = document.createElement('span');
 const secondsCounter = document.createElement('span');
-const decGame = {totalSeconds: 0, inter: {}};
+timeCounter.classList.add('clockCounter');
+const decGame = {totalSeconds: 0, inter: {}, codeKeys: false};
 const decWords = ['тв', 'бургер', 'суп', 'такси', 'балерина', 'радио', 'водка', 'баскетбол', 'студент', 'парк',
-'водка', 'лифт', 'интернет', 'телефон', 'журналист']
+'водка', 'лифт', 'интернет', 'телефон', 'робот']
 let gameWord = "";
 
 let arr1 = {а: 'a', б: 'b', д: 'd', е: 'e', ф: 'f', г: 'g', х: 'h', и: 'i', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o',
@@ -34,17 +36,18 @@ output1.style.marginTop = '12px';
 output1.style.display = 'none';
 output1.classList.add("codeKeys")
 timeCounter.style.display = 'none';
+// output2.textContent = 'inputs';
 
 
 //add to HTML
 timeCounter.append(minutesCounter);
 timeCounter.append(document.createTextNode(':'));
 timeCounter.append(secondsCounter);
-
 decodeArea.append(timeCounter);  
 decodeArea.append(decOutput);
 // decodeArea.append(userInput);
 decodeArea.append(decBtn);
+decodeArea.append(output2);
 decodeArea.append(output1);
 window.addEventListener('DOMContentLoaded', init());
 
@@ -54,19 +57,20 @@ decBtn.addEventListener('click', (e) => {
     startGame();
     decWords.sort(() => {return 0.5 - Math.random()});
      // let resp = makeOutput(userInput.value);
-    let myPhrase = decWords.shift();
-    console.log(decWords);
-    console.log(myPhrase, "WORD");
-    let resp = myPhrase;
-    makeOutput(myPhrase);
-    decOutput.textContent = resp;
-    console.log(resp, "RESP");
+    // let myPhrase = decWords.shift();
+    // console.log(decWords);
+    // console.log(myPhrase, "WORD");
+    // let resp = myPhrase;
+    // makeOutput(myPhrase);
+    // decOutput.textContent = resp;
+    // console.log(resp, "RESP");
     timeCounter.style.display = 'inline';
     output1.style.display = 'inline';
     decBtn.style.display = 'none';
     decGame.inter = setInterval(setTimer, 1000);
 })
 
+//Methods
 function makeOutput(val) {
     for (i=0; i < val.length; i++) {
         rusVal = val[i];
@@ -89,7 +93,71 @@ function init() {
 function startGame() {
     output1.style.display = 'block';
     timeCounter.style.display - 'block';
+    decWords.sort(() => {return 0.5 - Math.random()});
+    let myPhrase = decWords.shift();
+    console.log(decWords);
+    console.log(myPhrase, "myPhrase");
+    let resp = myPhrase;
+    makeOutput(myPhrase);
+    decOutput.textContent = resp;
+    decOutput.style.fontSize = '2em'
+    console.log(resp, "RESP");
+    createInputs(myPhrase);
 }
+
+function createInputs(val) {
+    console.log(val.length)
+    for (let i=0; i < val.length; i++) {
+        let playerInput = document.createElement('input');
+        playerInput.setAttribute('maxlength', 1);
+        playerInput.classList.add('inVal');
+        if (val[i] == " ") {
+            playerInput.disabled = true;
+        }
+        output2.append(playerInput);
+        playerInput.guess = false;
+        playerInput.addEventListener('keydown', (e) => { 
+            playerInput.value = playerInput.value.toLowerCase();
+            playerInput.value = playerInput.value.toLowerCase();
+            if (e.key.toLowerCase() ==  arr1[val[i]].toLowerCase()) {
+                playerInput.style.border = '3px solid green'; 
+                playerInput.guess = true;
+            } else {
+                playerInput.style.border = '3px solid red';
+            }
+        })
+        playerInput.addEventListener('keyup', (e) => { 
+            let up = e.target.nextElementSibling;
+            if(up != null) {
+                if (up.disabled == true) {
+                    up.nextElementSibling;
+                }
+                up.focus();
+            }
+            checkWinner();
+        })
+        playerInput.addEventListener('focus', (e) => {
+            if (!playerInput.guess) {
+                playerInput.value = "";
+            }
+        })
+        playerInput.addEventListener('keypress', (e) => {
+            console.log(e.key, val[i], arr1[val[i]], "KEY VAL")
+        })
+    }
+}
+
+function checkWinner() {
+    let eleInputs =  output2.querySelectorAll('input')
+    let holder = [];
+    eleInputs.forEach((ele, index) => {
+        console.log(ele.value, "ELEMENT");
+        holder.push(ele.value); 
+    })
+    let winVar = holder.join('');
+    console.log(winVar);
+}
+
 
 function setTimer() {
     decGame.totalSeconds++;

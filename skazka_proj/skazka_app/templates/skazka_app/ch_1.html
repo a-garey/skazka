@@ -139,42 +139,80 @@
             <h5>Excercise 1.4</h5>
             <p class="instructions">Flip over the cards to find the matching words</p>
 
-        
-            <div class="start">
+            {% comment %} <div class="start">
                 <button id="matchBtn" class="gameButton">Start Game</button>
-            </div>
+            </div> {% endcomment %}
 
-            <div class="game-container">
-                <div class="game-info-container">
+            <div class="memory-game">
+                {% comment %} <div class="game-info-container">
                     <div class="game-info">
                         Time <span id="time-remaining">100</span>
                     </div>
                     <div class="game-info">
                         Flips <span id="flips">0</span>s
                     </div>
+                </div> {% endcomment %}
+
+                <div class="tile" data-framework="chocolate">
+                    <img class="front-face" src="/static/images/chocolate.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
                 </div>
 
-            <div class="tile visible">
-                <div class="card-back card-face">
-                    
+                <div class="tile" data-framework="chocolate">
+                    <img class="front-face" src="/static/images/chocolate-word.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
                 </div>
-                <div class="card-front card-face">
-                    
-                </div>
-            </div> 
 
-                <div class="tile"></div>
-                <div class="tile"></div>
-                <div class="tile"></div>
-                <div class="tile"></div>
-                <div class="tile"></div>
-                <div class="tile"></div>
-                <div class="tile"></div>
-                <div class="tile"></div>
-                <div class="tile"></div>
-                <div class="tile"></div>
-                <div class="tile"></div>
-                
+                <div class="tile" data-framework="fruit">
+                    <img class="front-face" src="/static/images/fruit.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
+                <div class="tile" data-framework="fruit">
+                    <img class="front-face" src="/static/images/fruit-word.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
+                <div class="tile" data-framework="guitar">
+                    <img class="front-face" src="/static/images/guitar.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
+                <div class="tile" data-framework="guitar">
+                    <img class="front-face" src="/static/images/guitar-word.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
+                <div class="tile" data-framework="pizza">
+                    <img class="front-face" src="/static/images/pizza.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
+                <div class="tile" data-framework="pizza">
+                    <img class="front-face" src="/static/images/pizza-word.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
+                <div class="tile" data-framework="tennis">
+                    <img class="front-face" src="/static/images/tennis.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
+                <div class="tile" data-framework="tennis">
+                    <img class="front-face" src="/static/images/tennis-word.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
+                <div class="tile" data-framework="tiger">
+                    <img class="front-face" src="/static/images/tiger.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
+                <div class="tile" data-framework="tiger">
+                    <img class="front-face" src="/static/images/tiger-word.png" />
+                    <img class="back-face" src="/static/images/squiggles.jpg" />
+                </div>
+
             </div>
         </div>
     </div>
@@ -185,7 +223,7 @@
 <script src="static/scripts/game-1.js"></script>
 <script src="static/scripts/scramble.js"></script>
 <script src="static/scripts/decode.js"></script>
-<script src="static/scripts/match.js" async></script>
+<script src="static/scripts/match.js"></script>
 
 
 {% endblock %}

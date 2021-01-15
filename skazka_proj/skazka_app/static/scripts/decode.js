@@ -173,7 +173,7 @@ function checkWinner(val) {
 function endGame() {
     clearInterval(decGame.inter);
     decBtn.style.display = 'inline';
-    decBtn.innerText = 'Play again?';
+    decBtn.innerText = 'Next Word';
     output1.style.display = 'none';
 }
 

@@ -12,7 +12,7 @@ const minutesCounter = document.createElement('span');
 const secondsCounter = document.createElement('span');
 timeCounter.classList.add('clockCounter');
 const decGame = {totalSeconds: 0, inter: {}, codeKeys: false, myPhrase: ''};
-const decWords = ['тв', 'бургер', 'суп', 'такси', 'балерина', 'радио', 'водка', 'баскетбол', 'студент', 'парк',
+const decWords = ['тв', 'бургер', 'суп', 'такси', 'балерина', 'радио', 'баскетбол', 'студент', 'парк',
 'водка', 'лифт', 'интернет', 'телефон', 'робот']
 // const decWords = ['тв', 'суп']
 let gameWord = "";
@@ -191,5 +191,3 @@ function padNum(val){
         return valString;
     }
 }
-
-//given the cyrillic letters, type the English equivalent to decode the word

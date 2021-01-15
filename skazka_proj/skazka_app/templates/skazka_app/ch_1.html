@@ -114,7 +114,7 @@
     <div class="vocab-box">
         <div class="info">
             <h5>Excercise 1.2</h5>
-            <p class="instructions">Secret messages.</p>
+            <p class="instructions">Secret messages: type the English equivalent of the Cyrillic letter to decode the word</p>
         </div>
 
         <div class="decodeArea">
@@ -139,13 +139,18 @@
             <h5>Excercise 1.4</h5>
             <p class="instructions">Flip over the cards to find the matching words</p>
 
+        
+            <div class="start">
+                <button id="matchBtn" class="gameButton">Start Game</button>
+            </div>
+
             <div class="game-container">
                 <div class="game-info-container">
                     <div class="game-info">
                         Time <span id="time-remaining">100</span>
                     </div>
                     <div class="game-info">
-                        Flips <span id="flips">0</span>
+                        Flips <span id="flips">0</span>s
                     </div>
                 </div>
 
@@ -180,6 +185,7 @@
 <script src="static/scripts/game-1.js"></script>
 <script src="static/scripts/scramble.js"></script>
 <script src="static/scripts/decode.js"></script>
+<script src="static/scripts/match.js" async></script>
 
 
 {% endblock %}

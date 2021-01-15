@@ -11,10 +11,12 @@ const timeCounter = document.createElement('div');
 const minutesCounter = document.createElement('span');
 const secondsCounter = document.createElement('span');
 timeCounter.classList.add('clockCounter');
-const decGame = {totalSeconds: 0, inter: {}, codeKeys: false};
+const decGame = {totalSeconds: 0, inter: {}, codeKeys: false, myPhrase: ''};
 const decWords = ['тв', 'бургер', 'суп', 'такси', 'балерина', 'радио', 'водка', 'баскетбол', 'студент', 'парк',
 'водка', 'лифт', 'интернет', 'телефон', 'робот']
+// const decWords = ['тв', 'суп']
 let gameWord = "";
+let myPhrase = "";
 
 let arr1 = {а: 'a', б: 'b', д: 'd', е: 'e', ф: 'f', г: 'g', х: 'h', и: 'i', к: 'k', л: 'l', м: 'm', н: 'n', о: 'o',
 п: 'p', р: 'r', с: 's', т: 't', у: 'u', в: 'v', з: 'z'}
@@ -26,51 +28,35 @@ p: 'п', r: 'р', s: 'с', t: 'т', u: 'у', v: 'в', z: 'з'}
 decBtn.textContent = 'Start Game';
 decBtn.style.display = 'block';
 decBtn.classList.add("gameButton")
-// userInput.style.width = '600px';
-// userInput.style.height = '50px'; 
-// userInput.value = "Hello world"
 output1.style.fontSize = '0.8em';
 output1.style.backgroundColor = '#ddd';
 output1.style.padding = '10px';
-output1.style.marginTop = '12px';
+output1.style.marginTop = '18px';
 output1.style.display = 'none';
 output1.classList.add("codeKeys")
 timeCounter.style.display = 'none';
-// output2.textContent = 'inputs';
-
 
 //add to HTML
-timeCounter.append(minutesCounter);
-timeCounter.append(document.createTextNode(':'));
+timeCounter.append(minutesCounter, ":");
 timeCounter.append(secondsCounter);
 decodeArea.append(timeCounter);  
 decodeArea.append(decOutput);
-// decodeArea.append(userInput);
-decodeArea.append(decBtn);
 decodeArea.append(output2);
+decodeArea.append(decBtn);
 decodeArea.append(output1);
 window.addEventListener('DOMContentLoaded', init());
 
-
-//Event listeners
+//event listeners
 decBtn.addEventListener('click', (e) => {
     startGame();
     decWords.sort(() => {return 0.5 - Math.random()});
-     // let resp = makeOutput(userInput.value);
-    // let myPhrase = decWords.shift();
-    // console.log(decWords);
-    // console.log(myPhrase, "WORD");
-    // let resp = myPhrase;
-    // makeOutput(myPhrase);
-    // decOutput.textContent = resp;
-    // console.log(resp, "RESP");
-    timeCounter.style.display = 'inline';
-    output1.style.display = 'inline';
     decBtn.style.display = 'none';
+    // timeCounter.style.display = 'inline';
+    output1.style.display = 'inline';
     decGame.inter = setInterval(setTimer, 1000);
 })
 
-//Methods
+//methods
 function makeOutput(val) {
     for (i=0; i < val.length; i++) {
         rusVal = val[i];
@@ -91,22 +77,39 @@ function init() {
 }
 
 function startGame() {
-    output1.style.display = 'block';
-    timeCounter.style.display - 'block';
-    decWords.sort(() => {return 0.5 - Math.random()});
-    let myPhrase = decWords.shift();
-    console.log(decWords);
-    console.log(myPhrase, "myPhrase");
-    let resp = myPhrase;
-    makeOutput(myPhrase);
-    decOutput.textContent = resp;
-    decOutput.style.fontSize = '2em'
-    console.log(resp, "RESP");
-    createInputs(myPhrase);
+    minutesCounter.textContent = '00';
+    secondsCounter.textContent = '00';
+    if (decWords.length > 0 ){
+        decGame.totalSeconds = 0;
+        output1.style.display = 'block';
+        // timeCounter.style.display = 'block';
+        decWords.sort(() => {return 0.5 - Math.random()});
+        let myPhrase = decWords.shift();
+        console.log(decWords);
+        console.log(myPhrase, "myPhrase");
+        let resp = myPhrase;
+        makeOutput(myPhrase);
+        decOutput.textContent = resp;
+        decOutput.style.fontSize = '2em'
+        // console.log(resp, "RESP");
+        createInputs(myPhrase);
+    } else {
+        decOutput.style.display = 'none';
+        timeCounter.style.display = 'none';
+        output1.textContent = "All words guessed!"
+        output1.style.backgroundColor = 'transparent';
+        output2.innerHTML = 'Game Over';
+        output1.style.fontSize = '2em';
+        output2.style.fontSize = '2em';
+        output1.style.color = '#b900bc';
+        output2.style.color = '#b900bc';
+        output1.style.fontFamily = 'Gochi Hand, cursive';
+        output2.style.fontFamily = 'Gochi Hand, cursive';
+    }
 }
 
 function createInputs(val) {
-    console.log(val.length)
+    output2.innerHTML = '';
     for (let i=0; i < val.length; i++) {
         let playerInput = document.createElement('input');
         playerInput.setAttribute('maxlength', 1);
@@ -134,30 +137,45 @@ function createInputs(val) {
                 }
                 up.focus();
             }
-            checkWinner();
+            checkWinner(val);
         })
         playerInput.addEventListener('focus', (e) => {
             if (!playerInput.guess) {
                 playerInput.value = "";
             }
         })
-        playerInput.addEventListener('keypress', (e) => {
-            console.log(e.key, val[i], arr1[val[i]], "KEY VAL")
-        })
+        if (i == 0) {
+            playerInput.focus();
+        }
     }
 }
 
-function checkWinner() {
+function checkWinner(val) {
     let eleInputs =  output2.querySelectorAll('input')
     let holder = [];
     eleInputs.forEach((ele, index) => {
-        console.log(ele.value, "ELEMENT");
         holder.push(ele.value); 
     })
     let winVar = holder.join('');
-    console.log(winVar);
+    // console.log(winVar, "winVar -- Player entry");
+    let engArr = [];
+    for (let i = 0; i < val.length; i++) {
+        engArr.push(arr1[val[i]]);
+    }
+    let engVar = engArr.join('');
+    // console.log(engVar, "engVAr--original word");
+    if (engVar == winVar) {
+        console.log("You won!")
+        endGame();
+    }
 }
 
+function endGame() {
+    clearInterval(decGame.inter);
+    decBtn.style.display = 'inline';
+    decBtn.innerText = 'Play again?';
+    output1.style.display = 'none';
+}
 
 function setTimer() {
     decGame.totalSeconds++;

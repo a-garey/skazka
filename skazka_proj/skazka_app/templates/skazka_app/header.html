@@ -17,14 +17,14 @@
           Chapters
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="ch_1">Chapter 1</a>
+          <a class="dropdown-item" href="/ch_1">Chapter 1</a>
           <a class="dropdown-item" href="#">Chapter 2</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">TOC</a>
         </div>
       </li>
         <li class="nav-item">
-        <a class="nav-link" href="#">Dashboard</a>
+        <a class="nav-link" href="/dashboard">Dashboard</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Games</a>
@@ -40,8 +40,8 @@
         {% else %}
           <span class="navbar-text">
             You are not logged in &nbsp;&nbsp;
-            <a href="{% url 'login' %}">Log In</a> |
-            <a href="{% url 'register' %}">Register</a>
+            <a href="/login">Log In</a> |
+            <a href="/register">Register</a>
           </span>
           {% endif %}
     </nav>

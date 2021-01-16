@@ -1,0 +1,46 @@
+{% extends 'skazka_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<h1 class="main_header">Welcome! Sign in to manage your jobs!</h1>
+    <div> 
+        <h1 class="header">Register</h1>
+        <form action = "/register_method/" method="post">
+            {% csrf_token %}
+            <p>
+                First Name:
+                <input type="text" name="first_name" id="">
+            </p>
+            <p>
+                Last Name:
+                <input type="text" name="last_name" id="">
+            </p>
+            <p>
+                Email:
+                <input type="email" name="email" id="">
+            </p>
+            <p>
+                Password:
+                <input type="text" name="password" id="">
+            </p>
+            <p>
+                Confirm Password:
+                <input type="text" name="confirm_password" id="">
+            </p>
+            <button type="submit">Submit</button> 
+        </form>
+        <div>
+                {% if messages %}
+                <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+        </div>
+    </div> 
+
+
+{% endblock %}

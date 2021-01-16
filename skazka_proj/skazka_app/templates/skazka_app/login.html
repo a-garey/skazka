@@ -1,0 +1,36 @@
+{% extends 'skazka_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div>
+        <h1 class="header">Login</h1>
+        <form action = "/login_method/" method="POST">
+            {% csrf_token %}
+            <p>
+                Email:
+                <input type="text" name="email" id="">
+            </p>
+            <p>
+                Password:
+                <input type="text" name="password" id="">
+            </p>
+            <p>
+                Confirm Password:
+                <input type="text" name="confirm_password" id="">
+            </p>
+            <button type="submit">Submit</button>
+            <div>
+                {% if messages %}
+                <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </form> 
+    </div>
+
+    {% endblock %}

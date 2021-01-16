@@ -2,15 +2,22 @@
 
 
 //variables
-const tiles = document.querySelectorAll('.tile');
+let tiles = Array.from(document.querySelectorAll('.tile'));
+let board = document.getElementById('board')
+let results = document.getElementById('results')
+let start = document.getElementById('start')
+const matchBtn = document.getElementById('matchBtn')
 let hasFlippedTile = false;
 let firstTile, secondTile;
 let lockBoard = false;
-
+let count = 0;
+start.style.display = 'none';
 
 //event listeners
 tiles.forEach(tile => tile.addEventListener('click', flipTile))
-
+matchBtn.addEventListener('click', (e) => {
+    newGame();
+})
 
 //methods
 function flipTile() { 
@@ -20,6 +27,7 @@ function flipTile() {
     if(!hasFlippedTile) {
         hasFlippedTile = true;
         firstTile = this;
+        firstTile.removeEventListener('click', flipTile)
     } else {
         hasFlippedTile = false;
         secondTile = this; 
@@ -33,14 +41,20 @@ function checkMatch() {
         disableTiles();
         firstTile.classList.add('correct');
         secondTile.classList.add('correct');
+        count++; 
+        // console.log(count)
+        checkWin();
     } else {
         unFlipTiles();
+        firstTile.addEventListener('click', flipTile)
     }
 }
 
 function disableTiles() {
     firstTile.removeEventListener('click', flipTile)
     secondTile.removeEventListener('click', flipTile)
+
+    resetBoard();
 }
 
 function unFlipTiles() {
@@ -49,35 +63,50 @@ function unFlipTiles() {
         firstTile.classList.remove('flip');
         secondTile.classList.remove('flip');
 
-        lockBoard = false;
-    }, 1200);
+        resetBoard();
+    }, 1200); 
 }
 
+function resetBoard() {
+    [hasFlippedTile, lockBoard] = [false, false];
+}
 
-// //initial page loading
-// if(document.readyState === 'loading') {
-//     document.addEventListener('DOMContentLoaded', ready());
-// } else {
-//     ready();
-// }
+function checkWin() {
+    if (count === 6) {
+        console.log("You won!");
+        board.style.display = 'none';
+        results.textContent = 'Молодец, you won!'
+        results.style.fontSize = '2em';
+        results.style.color = '#b900bc';
+        results.style.fontFamily = 'Gochi Hand, cursive';
+        start.style.display = 'block';
+    }
+}
 
-// //variables 
-// const matchBtn = document.getElementById("matchBtn");
-// let tiles = Array.from(document.getElementsByClassName('tile'));
-// let matchGame = new MixOrMatch(100, tiles);  
+function newGame() {
+    start.style.display ='none';
+    count = 0;
+    unFlipTiles();
+    board.style.display = 'grid';
+    tiles.forEach(tile => tile.classList.remove('flip'));
+    tiles.forEach(tile => tile.classList.remove('correct'));
+    tiles.forEach(tile => tile.addEventListener('click', flipTile))
+    shuffleAgain();
+}
 
-// //event listeners
-// matchBtn.addEventListener('click', (e) => {
-//     console.log("it's working");
-//     ready();
-//     startMatchGame();
-// })
+(function shuffle() {
+    tiles.forEach(tile => {
+        let randomLoc = Math.floor(Math.random() * 12);
+        tile.style.order = randomLoc; 
+    })
+})();
 
-// tiles.forEach(tile => {
-//     tile.addEventListener('click', () => {
-//         // matchGame.flipCard(tile);
-//     })
-// })
+function shuffleAgain() {
+    tiles.forEach(tile => {
+        let randomLoc = Math.floor(Math.random() * 12);
+        tile.style.order = randomLoc; 
+    })
+};
 
 
 // //classes
@@ -94,8 +123,6 @@ function unFlipTiles() {
 //     }
 // }
 
-// class MixOrMatch {
-//     constructor(totalTime, tiles) {
 //         this.tilesArray = tiles;
 //         this.totalTime = totalTime;
 //         this.timeRemaining = totalTime;
@@ -109,20 +136,6 @@ function unFlipTiles() {
 //         this.timeRemaining = this.totalTime;
 //         this.matchedTiles = [];
 //         this.busy = true;
-//     }
-//     canFlipTile(tile) {
-//         // return (!this.busy && !this.matchedTiles.includes(tile) && tile !== this.tileToCheck);
-//         return true
-//     }
-//     flipTile(tile ) {
-//         if(this.canFlipTile(tile)) {
-//             this.audioController.flip();
-
-//         }
-//     }
-// }
-
-// //methods
 
 
 

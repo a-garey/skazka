@@ -137,13 +137,14 @@
     <div class="vocab-box">
         <div class="exercise">
             <h5>Excercise 1.4</h5>
-            <p class="instructions">Flip over the cards to find the matching words</p>
+            <p class="instructions">Flip over the cards to match the words and pictures</p>
 
-            {% comment %} <div class="start">
-                <button id="matchBtn" class="gameButton">Start Game</button>
-            </div> {% endcomment %}
+            <div id="start">
+                <div id="results"> </div>
+                <button id="matchBtn" class="gameButton">Play Again</button>
+            </div>
 
-            <div class="memory-game">
+            <div id="board" class="memory-game" >
                 {% comment %} <div class="game-info-container">
                     <div class="game-info">
                         Time <span id="time-remaining">100</span>

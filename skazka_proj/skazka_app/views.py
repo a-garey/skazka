@@ -15,7 +15,7 @@ def register_method(request):
     if len(errors) > 0:
         for key, val in errors.items():
             messages.error(request, val)
-        return redirect("/register")
+        return redirect("/register") 
     first_name = request.POST["first_name"]
     last_name = request.POST["last_name"]
     email = request.POST["email"]

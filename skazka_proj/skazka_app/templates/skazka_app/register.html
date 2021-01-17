@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1 class="main_header">Welcome! Sign in to manage your jobs!</h1>
+<h1 class="main_header">Sign in to track your pogress</h1>
     <div> 
         <h1 class="header">Register</h1>
         <form action = "/register_method/" method="post">
@@ -41,6 +41,61 @@
                 {% endif %}
         </div>
     </div> 
+
+    <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Register</h2>
+                        <form action= "/register_method/" method="POST" class="register-form" id="register-form">
+                        {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name"><i class="fas fa-user"></i></i></label>
+                                <input type="text" name="first_name" id="name" placeholder="First Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="name"><i class="fas fa-user"></i></i></label>
+                                <input type="text" name="last_name" id="name" placeholder="Last Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="email"><i class="fas fa-envelope"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="fas fa-lock"></i></label>
+                                <input type="password" name="password" id="password" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password"><i class="fas fa-lock"></i></label>
+                                <input type="password" name="confirm_password" id="confirm_password" placeholder="Re-enter password"/>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                            </div>
+                        </form>
+                        {% comment %} <div class="signup-image">
+                            <a href="#">Forgot password?</a>
+                        </div> {% endcomment %}
+                    </div>
+                    <div class="animal">
+                        <img src="/static/images/bear.png" class="img-fluid" width="300px" width="250px" alt="bear"></>
+                        <div class="helper-text">
+                            <a href="/login">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                {% if messages %}
+                <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </section>
 
 
 {% endblock %}

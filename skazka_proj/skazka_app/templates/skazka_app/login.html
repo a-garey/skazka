@@ -4,33 +4,50 @@
 
 {% block content %}
 
-<div>
-        <h1 class="header">Login</h1>
-        <form action = "/login_method/" method="POST">
-            {% csrf_token %}
-            <p>
-                Email:
-                <input type="text" name="email" id="">
-            </p>
-            <p>
-                Password:
-                <input type="text" name="password" id="">
-            </p>
-            <p>
-                Confirm Password:
-                <input type="text" name="confirm_password" id="">
-            </p>
-            <button type="submit">Submit</button>
-            <div>
-                {% if messages %}
-                <ul class="messages">    
-                {% for message in messages %}    
-                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-                    {% endfor %}
-                </ul>
-                {% endif %}
+    <!-- Login form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Login</h2>
+                        <div>
+                            {% if messages %}
+                            <ul class="messages">    
+                            {% for message in messages %}    
+                                <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                        <form action= "/login_method/" method="POST" class="register-form" id="register-form">
+                        {% csrf_token %}
+                            <div class="form-group">
+                                <label for="email"><i class="fas fa-envelope"></i></label>
+                                <input type="email" name="email" id="email" placeholder="Email"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="password"><i class="fas fa-lock"></i></label>
+                                <input type="password" name="password" id="password" placeholder="Password"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm_password"><i class="fas fa-lock"></i></label>
+                                <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm password"/>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="login" id="login" class="form-submit" value="Login"/>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="deer">
+                        <img src="/static/images/deer.png" class="img-fluid" width="300px" width="250px" alt="bear"></>
+                        <div class="helper-text">
+                            <a href="/login">Forgot password?</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </form> 
-    </div>
+            
+        </section>
 
     {% endblock %}

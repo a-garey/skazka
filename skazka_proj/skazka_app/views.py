@@ -7,6 +7,13 @@ from .models import *
 def index(request):
     return render(request, "skazka_app/index.html")
 
+def header(request):
+    context = {
+        "one_user" : User.objects.get(id=request.session["user_id"]),
+        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+    }
+    return render(request, "skazka_app/header.html")
+
 def register(request):
     return render(request, "skazka_app/register.html")
 
@@ -40,6 +47,7 @@ def login_method(request):
         logged_user = user_list[0]
         if bcrypt.checkpw(password.encode() , logged_user.password.encode()):
             request.session["user_id"] = logged_user.id
+            # print(user_id, "USER ID")
             return redirect("/dashboard")
         else:
             messages.error(request, "Incorrect password")
@@ -51,12 +59,15 @@ def login_method(request):
 
 def dashboard(request):
     context = {
-        # "one_user" : User.objects.get(id=request.session["user_id"]),
-        # "all_scores" : Result.objects.exclude(student = request.session["user_id"])
-        # "user" : get_user_model(),
-        # "one_user" : User.objects.get(id=request.session["username"])
+        "one_user" : User.objects.get(id=request.session["user_id"]),
+        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
     }
     return render(request, "skazka_app/dashboard.html")
+
+def logout(request):
+    request.session.clear()
+    print("cleared")
+    return redirect("/")
 
 def ch_1(request):
     return render(request, "skazka_app/ch_1.html")

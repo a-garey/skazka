@@ -4,12 +4,18 @@
 
 .signup-content {
     padding-top: 75px; 
+    padding-bottom: 24px;
     display: flex;
 }
 
-.animal {
+.bear {
     margin-left: 132px;
     margin-top: 90px;
+}
+
+.deer {
+    margin-left: 132px;
+    margin-top: 0px;
 }
 
 .img-fluid {
@@ -142,4 +148,10 @@ label.valid {
     position: absolute;
     /* right: 0; */
     font-size: 16px;
-    color: green; }
+    color: green; 
+}
+
+.messages {
+    color: #9C2819;
+    font-family: 'Fraunces', serif;
+}

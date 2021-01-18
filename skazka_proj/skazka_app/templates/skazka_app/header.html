@@ -32,10 +32,10 @@
     </ul>
 
     <nav class="navbar navbar-light bg-light">
-      {% if user.is_authenticated %}
+      {% if one_user %}
         <span class="navbar-text">
-          Hi {{ user.username }}!  &nbsp;&nbsp;
-          <a href="{% url 'logout' %}">Log Out</a>
+          Hi {{ one_user.first_name }}!  &nbsp;&nbsp;
+          <a href="/logout">Log Out</a>
         </span>
         {% else %}
           <span class="navbar-text">
@@ -43,7 +43,7 @@
             <a href="/login">Log In</a> |
             <a href="/register">Register</a>
           </span>
-          {% endif %}
+      {% endif %}
     </nav>
 
     {% comment %} <form class="form-inline my-2 my-lg-0">

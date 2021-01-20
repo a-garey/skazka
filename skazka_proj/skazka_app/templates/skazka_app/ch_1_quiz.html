@@ -5,24 +5,24 @@
 <div class='main-content'>
 
     <h1>Chapter 1 Quiz</h1> 
-    <h3>{{ one_user.id }}</h3>
+    {% comment %} <h3>{{ one_user.id }}</h3> {% endcomment %}
 
-    <div>
+    <div class="sample-form">
         <form action="/create_score" method="post">
         {% csrf_token %}
-            <p>
-                Chapter:
-                <input type="text" name="chapter" id="chapter">
-            </p>
-            <p>
-                Score:
-                <input type="text" name="grade" id="grade">
-            </p>
+    
+            <div class="form-group">
+                <label for="chapter">Chapter</label>
+                <input type="text" class="form-control" name="chapter" id="chapter"/>
+            </div>
 
-            <button type="submit">Submit</button>
+            <div class="form-group">
+                <label for="score">Score</label>
+                <input type="text" class="form-control" name="grade" id="score"/>
+            </div>
+
+            <button type="submit" class="gameButton">Submit</button>
         </form>
-
-
 </div>
 
 {% endblock %}

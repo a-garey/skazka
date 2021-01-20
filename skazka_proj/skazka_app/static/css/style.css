@@ -182,4 +182,19 @@ td {
     width: 70%;
     margin: auto;
     margin-top: 36px;
+    color: black;
+}
+
+.sample-form {
+    width: 70%;
+    margin-top: 36px;
+}
+
+.dashboard-table a {
+    color: black;
+}
+
+.dashboard-table a:hover {
+    color: black;
+    text-decoration: underline;
 }

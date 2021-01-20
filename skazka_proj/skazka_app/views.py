@@ -106,13 +106,13 @@ def ch_1_quiz(request):
             "all_scores" : Score.objects.exclude(student = request.session["user_id"])
         }
         return render(request, "skazka_app/ch_1_quiz.html", context)
-    return render(request, "skazka_app/ch_1.html")
+    return render(request, "skazka_app/ch_1_quiz.html")
 
 def create_score(request):
     for key, value in request.session.items(): 
         print (key, value)
     if not "user_id" in request.session:
-        messages.error(request, "You must be logged in")
+        messages.error(request, "You must be logged in to save scores")
         return redirect("/")
     student = User.objects.get(id = request.session["user_id"])
     # errors = {}

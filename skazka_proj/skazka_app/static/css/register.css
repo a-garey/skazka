@@ -76,7 +76,7 @@ background: #5a6268;
 .register-form {
     width: 100%; }
     
-.form-group {
+.form-group-mine {
     position: relative;
     margin-bottom: 25px;
     overflow: hidden; }
@@ -109,7 +109,7 @@ input#name, input#email, input#password, input#confirm_password {
         input:focus:-moz-placeholder {
         color: #222; }
 
-label {
+.my-form {
     position: absolute;
     left: 5px;
     top: 50%;

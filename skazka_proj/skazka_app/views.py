@@ -6,7 +6,11 @@ from .models import *
 
 
 def index(request):
-    return render(request, "skazka_app/index.html")
+    context = {
+        "one_user" : User.objects.get(id=request.session["user_id"]),
+        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+    }
+    return render(request, "skazka_app/index.html", context)
 
 def header(request):
     context = {
@@ -77,7 +81,26 @@ def logout_request (request):
     return redirect("/")
 
 def ch_1(request):
-    return render(request, "skazka_app/ch_1.html")
+    context = {
+        "one_user" : User.objects.get(id=request.session["user_id"]),
+        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+    }
+    return render(request, "skazka_app/ch_1.html", context)
+
+def ch_1_quiz(request):
+    context = {
+        "one_user" : User.objects.get(id=request.session["user_id"]),
+        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+    }
+    return render(request, "skazka_app/ch_1_quiz.html", context)
+
+
+
+
+# //select results by user id
+
+
+
 
 
 

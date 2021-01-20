@@ -78,7 +78,7 @@ class User(models.Model):
 
 class ScoreManager(models.Manager):
     def validate_score(self, postData):
-        score_list = Score.objects.filter(title = postData["score"])
+        score_list = Score.objects.filter(grade = postData["grade"])
         # errors = {}
         # if len(postData["title"]) < 3:
         #     errors["score"] = "Score must be longer than 3 characters"

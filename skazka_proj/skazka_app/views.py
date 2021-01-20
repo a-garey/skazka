@@ -6,18 +6,22 @@ from .models import *
 
 
 def index(request):
-    context = {
-        "one_user" : User.objects.get(id=request.session["user_id"]),
-        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
-    }
-    return render(request, "skazka_app/index.html", context)
+    if "user_id" in request.session:
+        context = {
+            "one_user" : User.objects.get(id=request.session["user_id"]),
+            "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+        }
+        return render(request, "skazka_app/index.html", context)
+    return render(request, "skazka_app/index.html")
 
 def header(request):
-    context = {
-        "one_user" : User.objects.get(id=request.session["user_id"]),
-        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
-    }
-    return render(request, "skazka_app/header.html", context)
+    if "user_id" in request.session:
+        context = {
+            "one_user" : User.objects.get(id=request.session["user_id"]),
+            "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+        }
+        return render(request, "skazka_app/header.html", context)
+    return redirect("/")
 
 def register(request):
     return render(request, "skazka_app/register.html")
@@ -68,31 +72,60 @@ def login_method(request):
         return redirect("/login")
 
 def dashboard(request):
-    context = {
-        "one_user" : User.objects.get(id=request.session["user_id"]),
-        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
-    }
-    return render(request, "skazka_app/dashboard.html", context)
+    if "user_id" in request.session:
+        context = {
+            "one_user" : User.objects.get(id=request.session["user_id"]),
+            "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+        }
+        return render(request, "skazka_app/dashboard.html", context)
+    return render(request, "skazka_app/index.html")
+
 
 def logout_request (request):
+    context = {
+        "one_user" : User.objects.get(id=request.session["user_id"]),
+    }
     request.session.clear()
     logout(request)
     print("cleared")
-    return redirect("/")
+    return redirect("/", context)
 
 def ch_1(request):
-    context = {
-        "one_user" : User.objects.get(id=request.session["user_id"]),
-        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
-    }
-    return render(request, "skazka_app/ch_1.html", context)
+    if "user_id" in request.session:
+        context = {
+            "one_user" : User.objects.get(id=request.session["user_id"]),
+            "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+        }
+        return render(request, "skazka_app/ch_1.html", context)
+    return render(request, "skazka_app/ch_1.html")
 
 def ch_1_quiz(request):
-    context = {
-        "one_user" : User.objects.get(id=request.session["user_id"]),
-        "all_scores" : Score.objects.exclude(student = request.session["user_id"])
-    }
-    return render(request, "skazka_app/ch_1_quiz.html", context)
+    if "user_id" in request.session:
+        context = {
+            "one_user" : User.objects.get(id=request.session["user_id"]),
+            "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+        }
+        return render(request, "skazka_app/ch_1_quiz.html", context)
+    return render(request, "skazka_app/ch_1.html")
+
+def create_score(request):
+    for key, value in request.session.items(): 
+        print (key, value)
+    if not "user_id" in request.session:
+        messages.error(request, "You must be logged in")
+        return redirect("/")
+    student = User.objects.get(id = request.session["user_id"])
+    # errors = {}
+    # errors = Score.objects.validate_score(request.POST)
+    # if len(errors) > 0:
+    #     for key, val in errors.items():
+    #         messages.error(request, val)
+    #     return redirect("/ch_1_quiz")
+    chapter = request.POST["chapter"]
+    grade = request.POST["grade"]
+    new_score = Score.objects.create(chapter=chapter, grade=grade, student=student)
+    return redirect ("/dashboard")
+
 
 
 

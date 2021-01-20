@@ -168,3 +168,18 @@ a:hover {
 img {
     padding-bottom: 8px;
 }
+
+th {
+    text-align: center;
+}
+
+td {
+    text-align: center;
+    margin: auto;
+}
+
+.dashboard-table {
+    width: 70%;
+    margin: auto;
+    margin-top: 36px;
+}

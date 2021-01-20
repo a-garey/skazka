@@ -4,9 +4,31 @@
 
 <div class='main-content'>
 
-    <h1>Dashboard Page</h1> 
+    <h1>Dashboard</h1> 
 
-    <p> Hello {{ one_user.first_name }}! </p>
+    <div class="dashboard-table">
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Chapter</th>
+                    <th>Score</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for score in one_user.quizzes_completed.all %}
+                    <tr>
+                        <td>{{score.chapter}}</td>
+                        <td>{{score.grade}}</td> 
+                        <td>
+                            <a href="/ch_1_quiz">Chapter 1 Quiz</a>&nbsp&nbsp&nbsp&nbsp
+                            <a href="{{score.id}}/grade_edit">Remove</a>&nbsp&nbsp
+                    </td> 
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>      
+    </div>
 
 </div>
 

@@ -7,6 +7,21 @@
     <h1>Chapter 1 Quiz</h1> 
     <h3>{{ one_user.id }}</h3>
 
+    <div>
+        <form action="/create_score" method="post">
+        {% csrf_token %}
+            <p>
+                Chapter:
+                <input type="text" name="chapter" id="chapter">
+            </p>
+            <p>
+                Score:
+                <input type="text" name="grade" id="grade">
+            </p>
+
+            <button type="submit">Submit</button>
+        </form>
+
 
 </div>
 

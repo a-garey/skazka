@@ -75,8 +75,10 @@ def dashboard(request):
     if "user_id" in request.session:
         context = {
             "one_user" : User.objects.get(id=request.session["user_id"]),
+            "user_scores" : Score.objects.filter(student = request.session["user_id"]),
             "all_scores" : Score.objects.exclude(student = request.session["user_id"])
         }
+        print(Score.objects.filter(student = request.session["user_id"]))
         return render(request, "skazka_app/dashboard.html", context)
     return render(request, "skazka_app/index.html")
 

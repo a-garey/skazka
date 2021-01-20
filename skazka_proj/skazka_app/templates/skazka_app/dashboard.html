@@ -5,31 +5,39 @@
 <div class='main-content'>
 
     <h1>Dashboard</h1> 
+    <h3>Quiz summary</h3>
 
-    <div class="dashboard-table">
-        <table class="table">
-            <thead class="thead-light">
-                <tr>
-                    <th>Chapter</th>
-                    <th>Score</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for score in one_user.quizzes_completed.all %}
+
+        {% if not quizzes_completed %}
+            <p class ="instructions">You have not taken any quizzes yet<p>
+    
+        {% else %}
+
+        <div class="dashboard-table">
+            <table class="table">
+                <thead class="thead-light">
                     <tr>
-                        <td>{{score.chapter}}</td>
-                        <td>{{score.grade}}</td> 
-                        <td>
-                            <a href="/ch_1_quiz">Retake</a>&nbsp&nbsp&nbsp&nbsp
-                            <a href="{{score.id}}/grade_edit">Delete</a>&nbsp&nbsp
-                    </td> 
+                        <th>Chapter</th>
+                        <th>Score</th>
+                        <th>Actions</th>
                     </tr>
-                {% endfor %}
-            </tbody>
-        </table>      
-    </div>
+                </thead>
+                <tbody>
+                    {% for score in one_user.quizzes_completed.all %}
+                        <tr>
+                            <td>{{score.chapter}}</td>
+                            <td>{{score.grade}}</td> 
+                            <td>
+                                <a href="/ch_1_quiz">Retake</a>&nbsp&nbsp&nbsp&nbsp
+                                <a href="{{score.id}}/grade_edit">Delete</a>&nbsp&nbsp
+                        </td> 
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>      
+        </div>
 
+        {% endif %}
 </div>
 
 {% endblock %}

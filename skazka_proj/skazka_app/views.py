@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.contrib.auth import logout
 from django.contrib import messages
 import bcrypt
 from .models import *
@@ -12,12 +13,13 @@ def header(request):
         "one_user" : User.objects.get(id=request.session["user_id"]),
         "all_scores" : Score.objects.exclude(student = request.session["user_id"])
     }
-    return render(request, "skazka_app/header.html")
+    return render(request, "skazka_app/header.html", context)
 
 def register(request):
     return render(request, "skazka_app/register.html")
 
 def register_method(request):
+    print("request.POST")
     errors = User.objects.regValidate(request.POST)
     if len(errors) > 0:
         for key, val in errors.items():
@@ -30,7 +32,7 @@ def register_method(request):
     pw_hash = bcrypt.hashpw(password.encode() , bcrypt.gensalt()).decode()
     user = User.objects.create(first_name=first_name, last_name=last_name, email=email, password=pw_hash)
     request.session["user_id"] = user.id
-    print(User.first_name)
+    print(user.first_name)
     return redirect("/")
 
     print("Validations passed")
@@ -43,11 +45,16 @@ def login_method(request):
     email = request.POST["email"]
     password = request.POST["password"]
     user_list = User.objects.filter(email = email)
+    # request.session["user_id"] = user.id
+    context = {
+        "email" : email,
+        "user" : user_list
+    }  
     if len(user_list) > 0:
         logged_user = user_list[0]
         if bcrypt.checkpw(password.encode() , logged_user.password.encode()):
             request.session["user_id"] = logged_user.id
-            # print(user_id, "USER ID")
+            print(logged_user, "USER ID")
             return redirect("/dashboard")
         else:
             messages.error(request, "Incorrect password")
@@ -56,16 +63,16 @@ def login_method(request):
         messages.error(request, "Email does not exist in database")
         return redirect("/login")
 
-
 def dashboard(request):
     context = {
         "one_user" : User.objects.get(id=request.session["user_id"]),
         "all_scores" : Score.objects.exclude(student = request.session["user_id"])
     }
-    return render(request, "skazka_app/dashboard.html")
+    return render(request, "skazka_app/dashboard.html", context)
 
-def logout(request):
+def logout_request (request):
     request.session.clear()
+    logout(request)
     print("cleared")
     return redirect("/")
 

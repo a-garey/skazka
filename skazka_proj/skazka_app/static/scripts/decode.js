@@ -82,7 +82,6 @@ function startGame() {
     if (decWords.length > 0 ){
         decGame.totalSeconds = 0;
         output1.style.display = 'block';
-        // timeCounter.style.display = 'block';
         decWords.sort(() => {return 0.5 - Math.random()});
         let myPhrase = decWords.shift();
         console.log(decWords);
@@ -91,7 +90,6 @@ function startGame() {
         makeOutput(myPhrase);
         decOutput.textContent = resp;
         decOutput.style.fontSize = '2em'
-        // console.log(resp, "RESP");
         createInputs(myPhrase);
     } else {
         decOutput.style.display = 'none';

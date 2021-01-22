@@ -43,6 +43,23 @@ def register_method(request):
     print(user.first_name)
     return redirect("/")
 
+    # def change_password(request):
+    # print("request.POST")
+    # errors = User.objects.regValidate(request.POST)
+    # if len(errors) > 0:
+    #     for key, val in errors.items():
+    #         messages.error(request, val)
+    #     return redirect("/register") 
+    # first_name = request.POST["first_name"]
+    # last_name = request.POST["last_name"]
+    # email = request.POST["email"]
+    # password = request.POST["password"]
+    # pw_hash = bcrypt.hashpw(password.encode() , bcrypt.gensalt()).decode()
+    # user = User.objects.create(first_name=first_name, last_name=last_name, email=email, password=pw_hash)
+    # request.session["user_id"] = user.id
+    # print(user.first_name)
+    # return redirect("/")
+
     print("Validations passed")
     return redirect("/")
 
@@ -83,7 +100,7 @@ def dashboard(request):
     return render(request, "skazka_app/index.html")
 
 
-def logout_request (request):
+def logout_request(request):
     context = {
         "one_user" : User.objects.get(id=request.session["user_id"]),
     }

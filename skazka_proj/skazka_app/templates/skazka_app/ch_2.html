@@ -1,0 +1,53 @@
+{% extends 'skazka_app/base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class='main-content'>
+
+    <div class='intro'>
+        <h1><SPAN STYLE="font-family: 'Gochi Hand', cursive; font-size: 36pt">Chapter 2: Nouns</span><h1>
+        <h4>Gender and Plurals</h4>
+    </div>
+
+    
+    <!--Video content-->
+    <div class="presentation">
+        <div class="container-opacity">
+            <h2 class="display-7">Introduction</h2>
+            <p class="lead">Watch the video and type the nouns you see in the box (in English)</p>
+            <div class="video">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/99hj0FfOtsA" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="typeword">
+                <p>word</p>
+                <p><input type="text"></p>
+                <button>Enter</button>
+            
+            <!-- Enter word and a circle pops up on the right hand side with the word in it -->
+
+            </div>
+        </div>
+    </div>
+
+    <!--Excercise 2.1-->
+    <div class="vocab-box">
+        <div class="info">
+            <h5>Excercise 2.1</h5>
+            <p class="instructions">Match the Russian word from the video to its English definition</p>
+        </div>
+
+        <!-- drag and drop vocab -->
+        <div class="vocabArea">
+            <p>cat, desk, lamp, newspaper, book, paper, chair, pen, pencil, light</p>
+        </div>
+    
+    </div>
+
+
+    <a href="/ch_1_quiz"><h4 class="go">Go to Chapter 2 Quiz &nbsp;<i class="fas fa-arrow-right fa-lg"></i></a></h4>
+</div>
+
+
+{% endblock %}

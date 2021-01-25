@@ -1,4 +1,4 @@
-#!/Volumes/BACKUP64/PDX/capstone/Skazka/djangoPy3Env/bin/python3
+#!/Volumes/ag_black/coding_production/skazka/djangoPy3Env/bin/python3
 # When the django-admin.py deprecation ends, remove this script.
 import warnings
 

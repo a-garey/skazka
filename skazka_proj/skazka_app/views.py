@@ -127,6 +127,15 @@ def ch_1_quiz(request):
         return render(request, "skazka_app/ch_1_quiz.html", context)
     return render(request, "skazka_app/ch_1_quiz.html")
 
+def ch_2(request):
+    if "user_id" in request.session:
+        context = {
+            "one_user" : User.objects.get(id=request.session["user_id"]),
+            "all_scores" : Score.objects.exclude(student = request.session["user_id"])
+        }
+        return render(request, "skazka_app/ch_2.html", context)
+    return render(request, "skazka_app/ch_2.html")
+
 def create_score(request):
     for key, value in request.session.items(): 
         print (key, value)
